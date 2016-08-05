@@ -18,7 +18,7 @@ dependencies {
   compile localGroovy()
 }
 
-group "com.ascotrobot.kue"
+group "com.kue"
 version "1.0.1"
 
 pluginBundle {
@@ -28,7 +28,7 @@ pluginBundle {
     tags = ['web', 'rest', 'framework']
     plugins {
         kueGradlePlugin {
-            id = 'com.ascotrobot.kue'
+            id = 'com.kue'
             displayName = 'Kue Gradle Plugin'
         }
     }

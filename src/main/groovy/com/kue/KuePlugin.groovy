@@ -1,4 +1,4 @@
-package com.ascotrobot.kue
+package com.kue
 
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.Project
