@@ -50,5 +50,5 @@ class KuePlugin implements Plugin<Project> {
 }
 
 class KuePluginExtension {
-    String mainClass = 'com.ascotrobot.kue.internal.Main'
+    String mainClass = "com.kue.core.Main"
 }
