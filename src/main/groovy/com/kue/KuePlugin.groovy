@@ -13,7 +13,12 @@ class KuePlugin implements Plugin<Project> {
         project.task('run') << {
             def classpath = project.sourceSets.main.runtimeClasspath.getFiles().collect {it.getAbsolutePath()}.join(':')
             Thread.start {
-                def proc = "java -cp $classpath $project.kue.mainClass".execute()
+                def command = "java -cp $classpath "
+                if (project.hasProperty("debug")) {
+                    command += " -agentlib:jdwp=transport=dt_socket,server=y,address=$project.debug,suspend=n "
+                }
+                command += project.kue.mainClass
+                def proc = command.execute()
                 Gradle.addShutdownHook {
                     proc.destroy()
                 }
