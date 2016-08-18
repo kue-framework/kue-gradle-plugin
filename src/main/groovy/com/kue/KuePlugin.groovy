@@ -13,14 +13,21 @@ class KuePlugin implements Plugin<Project> {
         project.task('run') << {
             def classpath = project.sourceSets.main.runtimeClasspath.getFiles().collect {it.getAbsolutePath()}.join(':')
             Thread.start {
+
                 def command = "java -cp $classpath"
                 if (project.hasProperty("debug")) {
                     command += " -agentlib:jdwp=transport=dt_socket,server=y,address=$project.debug,suspend=n"
+                }
+                if (project.hasProperty("jvmOpts")) {
+                    command += " $project.jvmOpts"
                 }
                 command += " $project.kue.mainClass"
                 if (project.hasProperty("port")) {
                     command += " $project.port"
                 }
+
+                project.logger.debug("Executing $command")
+
                 def proc = command.execute()
                 Gradle.addShutdownHook {
                     proc.destroy()
@@ -46,7 +53,6 @@ class KuePlugin implements Plugin<Project> {
         project.tasks.flywayMigrate.mustRunAfter project.tasks.kill
 
     }
-
 
     static void printStream(InputStream is) {
         def bytes = new byte[32]
