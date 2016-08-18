@@ -19,11 +19,11 @@ dependencies {
 }
 
 group "com.kue"
-version "1.0.4"
+version "1.0.5"
 
 pluginBundle {
-    website = 'https://github.com/qvaughan/kue'
-    vcsUrl = 'https://github.com/qvaughan/kue'
+    website = 'https://github.com/kue-framework/kue'
+    vcsUrl = 'https://github.com/kue-framework/kue'
     description = 'Gradle plugin for the Kue Web Framework'
     tags = ['web', 'rest', 'framework']
     plugins {
