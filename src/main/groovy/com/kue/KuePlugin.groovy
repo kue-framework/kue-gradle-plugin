@@ -49,7 +49,7 @@ class KuePlugin implements Plugin<Project> {
             }
         }
 
-        project.tasks.run.dependsOn([':build', ":kill", ":flywayMigrate"])
+        project.tasks.run.dependsOn([':assemble', ":kill", ":flywayMigrate"])
         project.tasks.flywayMigrate.mustRunAfter project.tasks.kill
 
     }
